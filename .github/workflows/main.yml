@@ -1,8 +1,9 @@
 name: Build And Push Image via Golang Application Hello World
 
 env:
-  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+  DOCKER_USERNAME: sanvu
+  DOCKER_PASSWORD: ${{ secrets.PASS1 }}
   IMAGE_TAG: ${{ github.sha }}
 
 on:
@@ -50,7 +51,7 @@ jobs:
         run: docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
 
       - name: Docker Build
-        run: docker build . -t ${DOCKER_USERNAME}/test:${IMAGE_TAG}
+        run: docker build . -t ${DOCKER_USERNAME}/testgo1:${IMAGE_TAG}
 
       - name: docker push
-        run: docker push ${DOCKER_USERNAME}/test:${IMAGE_TAG} 
+        run: docker push ${DOCKER_USERNAME}/testgo1:${IMAGE_TAG} 
