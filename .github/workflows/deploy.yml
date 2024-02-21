@@ -16,4 +16,4 @@ jobs:
 
       - name: 'Deploy'
         run: |
-          docker run -d ${DOCKER_USERNAME}/test:${IMAGE_TAG}
+          docker run -d -p 8080:8080 ${DOCKER_USERNAME}/test:${IMAGE_TAG}
