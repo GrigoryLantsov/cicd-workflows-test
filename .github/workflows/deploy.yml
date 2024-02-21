@@ -7,6 +7,7 @@ env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
   IMAGE_TAG: ${{ github.sha }}
+  IMAGE_NAME: "${DOCKER_USERNAME}/test:${IMAGE_TAG}"
 
 jobs:
   deploy:
@@ -16,4 +17,4 @@ jobs:
 
       - name: 'Deploy'
         run: |
-          docker run -d -p 8080:8080 ${DOCKER_USERNAME}/test:${IMAGE_TAG}
+          docker compose run -d --force-recreate ${DOCKER_USERNAME}/test:${IMAGE_TAG}
