@@ -46,6 +46,9 @@ jobs:
           name: artifact-golang
           path: ./main
 
+      - name: added rights for artifact
+        run: chmod +x ./main
+
       - name: Docker Login
         run: docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
 
