@@ -4,6 +4,7 @@ env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
   IMAGE_TAG: ${{ github.sha }}
+  DOCKER_IMAGE: ${DOCKER_USERNAME}/test:${IMAGE_TAG}
 
 on:
   push:
@@ -53,4 +54,4 @@ jobs:
         run: docker build . -t ${DOCKER_USERNAME}/test:${IMAGE_TAG}
 
       - name: docker push
-        run: docker push ${DOCKER_USERNAME}/test:${IMAGE_TAG} 
+        run: docker push ${DOCKER_IMAGE}

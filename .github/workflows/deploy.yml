@@ -1,0 +1,19 @@
+name: Deploy grigory-laptop
+
+on:
+  workflow_dispatch:
+
+env:
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+  IMAGE_TAG: ${{ github.sha }}
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 'Deploy'
+        run: |
+          docker run -d ${DOCKER_USERNAME}/test:${IMAGE_TAG}
